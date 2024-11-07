@@ -1,0 +1,17 @@
+{
+  "name": "iter-exp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/scratch.ts",
+    "test": "tsx src/test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsx": "^4.19.2"
+  }
+}

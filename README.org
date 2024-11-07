@@ -1,0 +1,27 @@
+#+TITLE: Iterable Extensions
+
+
+This project adds extensions like ~map[Async]~, ~scan[Async]~, ~filter[Async]~,
+~tap[Async]~, etc. to all JS objects that implement the [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterable_protocol][Iterable protocol]] or
+[[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_async_iterator_and_async_iterable_protocols][Async Iterable protocol]] in a functional manner that creates lazy iterables that
+can be consumed in a ~for [await] .. of~ loop, a ~...~ spread operation or one
+of the terminal operators exported like ~reduce[Async]~ and ~forEach[Async]~.
+
+For example:
+
+#+begin_src js
+  const arrayPipe = compose(
+      [1, 2, 1], // iterable
+      [
+          flatMap((a) => (a == 2 ? [[2, 2]] : 1)),
+          flatten(1),
+          map((v: number) => v * 2),
+          drop(2),
+          tap((v) => console.log(v, "fl")),
+          take(1),
+      ] // composed pipeline
+  )
+  );
+
+  forEach(arrayPipe, (x) => console.log(x));
+#+end_src
